@@ -1,4 +1,4 @@
-def ruleSpliter(data):
+def ruleSplitter(data):
     rules = data.split(':')
     rule_field = rules[0]
     if not len(rules) > 1:
