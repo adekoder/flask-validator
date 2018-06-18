@@ -9,19 +9,18 @@ class TestRuleSplitter(unittest.TestCase):
         rule = 'max'
         result = ruleSplitter(rule)
         print(result)
-        self.assertEqual(result['rule'], 'max')
-        self.assertEqual(len(result['data']), 0)
+        self.assertEqual(result['name'], 'max')
+        self.assertEqual(len(result['args']), 0)
     
     def testRuleWithSingleData(self):
         rule = 'min:12'
         result = ruleSplitter(rule)
         print(result)
-        self.assertEqual(result['rule'], 'min')
-        self.assertEqual(len(result['data']), 1)
+        self.assertEqual(result['name'], 'min')
+        self.assertEqual(len(result['args']), 1)
     
     def testRuleWithDoubleData(self):
         rule = 'exists:users,id'
         result = ruleSplitter(rule)
-        print(result)
-        self.assertEqual(result['rule'], 'exists')
-        self.assertEqual(len(result['data']), 2)
+        self.assertEqual(result['name'], 'exists')
+        self.assertEqual(len(result['args']), 2)
