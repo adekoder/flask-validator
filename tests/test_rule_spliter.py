@@ -11,14 +11,14 @@ class TestRuleSplitter(unittest.TestCase):
         print(result)
         self.assertEqual(result['name'], 'max')
         self.assertEqual(len(result['args']), 0)
-    
+
     def testRuleWithSingleData(self):
         rule = 'min:12'
         result = ruleSplitter(rule)
         print(result)
         self.assertEqual(result['name'], 'min')
         self.assertEqual(len(result['args']), 1)
-    
+
     def testRuleWithDoubleData(self):
         rule = 'exists:users,id'
         result = ruleSplitter(rule)

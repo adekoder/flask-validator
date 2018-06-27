@@ -11,7 +11,7 @@ validator = Validator(app)
 })
 def index():
     return jsonify(
-        status=True 
+        status=True
     ),200
 
 if __name__ == '__main__':
