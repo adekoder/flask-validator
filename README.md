@@ -3,4 +3,4 @@
 ## Installation
 
 ### Author
-Created by [Adewumi Oguniyi](https://github.com/adekoder)
+Created by [Adewumi Ogunbiyi](https://github.com/adekoder)
