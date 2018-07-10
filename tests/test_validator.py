@@ -1,7 +1,7 @@
 import unittest
 from flask import json
 from app import app
-
+from flask_validator.validator import ValidatorAttributeError
 class TestValidator(unittest.TestCase):
 
     def setUp(self):
@@ -11,7 +11,10 @@ class TestValidator(unittest.TestCase):
         self.client = self.app.test_client()
 
     def test_validator_with_wrong_json_data(self):
-        response = self.client.post('/index', data=json.dumps({}))
+        response = self.client.post('/index', data=json.dumps({}),
+         headers={
+             'content-type': 'application/json'
+        })
         data = response.get_json()
         self.assertEqual(response.status_code, 422)
         self.assertEqual(data['status'], False)
