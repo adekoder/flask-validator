@@ -18,7 +18,7 @@ def index():
 
 @app.route('/exception', methods=['POST'])
 @validator('pro', {
-    'name': ['required', 'max:10']
+    'name': ['required', 'max:10', 'min:3']
 })
 def test_exp():
     return jsonify(
@@ -26,11 +26,11 @@ def test_exp():
     ),200
 
 
-@app.route('/query', methods=['GET'])
+@app.route('/query/<name>', methods=['GET'])
 @validator('query_string', {
     'name': ['required', 'max:10']
 })
-def query_string():
+def query_string(name):
     return jsonify(
         status=True
     ),200

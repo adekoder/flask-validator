@@ -13,27 +13,28 @@ class Validators():
 
     @staticmethod
     def max(request_data, validator_arg):
-        error_msg = f'This field must not be greater than {validator_arg[0]}'
+        error_msg = f'This field must not be greater than {validator_arg}'
         if isinstance(request_data, int):
-            if request_data > int(validator_arg[0]):
+            if request_data > int(validator_arg):
                 return { 'status': False, 'message': error_msg}
         else:
-            if len(request_data) > int(validator_arg[0]):
+            if len(request_data) > int(validator_arg):
                 return { 'status': False, 'message': error_msg}
         return { 'status': True}
 
     @staticmethod
     def min(request_data, validator_arg):
-        error_msg = f'This field must not be less than {validator_arg[0]}'
+        error_msg = f'This field must not be less than {validator_arg}'
         if isinstance(request_data, int):
-            if request_data < int(validator_arg[0]):
+            if request_data < int(validator_arg):
                 return { 'status': False, 'message': error_msg}
         else:
-            if len(request_data) < int(validator_arg[0]):
+            if len(request_data) < int(validator_arg):
                 return { 'status': False, 'message': error_msg}
         return { 'status': True}
 
 validators = {
     'required': Validators.required,
-    'max': Validators.max
+    'max': Validators.max,
+    'min': Validators.min
 }

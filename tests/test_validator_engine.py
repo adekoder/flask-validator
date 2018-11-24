@@ -20,11 +20,10 @@ class TestValidator(unittest.TestCase):
         self.assertEqual(data['status'], False)
         self.assertIn('errors', data)
     
-    def test_validator_with_query_string(self):
-        with self.client as client:
-            response = client.get('/query',
-            headers={
-                'content-type': 'application/json'
-            })
-            print(response.get_json())
-            #self.assertIn('errors', session)
+    # def test_validator_with_query_string(self):
+    #     with self.client as client:
+    #         response = client.get('/query/',
+    #         headers={
+    #             'content-type': 'application/json'
+    #         })
+    #         print(response.get_json())
