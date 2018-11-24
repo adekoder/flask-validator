@@ -1,14 +1,14 @@
+from flask import request, jsonify, session, redirect
 class ErrorBag():
     def __init__(self):
         self.errors = {}
     
     def response(self):
-        if request.is_json or request.is_xhr:
-            return jsonify(
-                status=False,
-                errors=self.errors
-            ), 422
-        session['errors'] = self.errors
+        return jsonify(
+            status=False,
+            errors=self.errors
+        ), 422
+        
     
     def addError(self, field, message):
         self.errors[field] = message

@@ -1,7 +1,7 @@
 import unittest
-from flask import json
-from app import app
-from flask_validator.validator import ValidatorAttributeError
+from flask import json, session
+from . import app
+from flask_validator.exceptions import ValidatorAttributeError
 class TestValidator(unittest.TestCase):
 
     def setUp(self):
@@ -19,3 +19,11 @@ class TestValidator(unittest.TestCase):
         self.assertEqual(response.status_code, 422)
         self.assertEqual(data['status'], False)
         self.assertIn('errors', data)
+    
+    # def test_validator_with_query_string(self):
+    #     with self.client as client:
+    #         response = client.get('/query/',
+    #         headers={
+    #             'content-type': 'application/json'
+    #         })
+    #         print(response.get_json())
