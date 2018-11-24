@@ -1,26 +1,22 @@
 import unittest
-
-from flask_validator.rulesplitter import ruleSplitter
+from flask_validator.validator_engine import ValidatorEngine
 
 
 class TestRuleSplitter(unittest.TestCase):
-
+        
     def testRuleOnly(self):
-        rule = 'max'
-        result = ruleSplitter(rule)
+        result = ValidatorEngine().ruleSplitter('max')
         print(result)
-        self.assertEqual(result['name'], 'max')
-        self.assertEqual(len(result['args']), 0)
+        self.assertEqual(result[0], 'max')
+        self.assertEqual(len(result[1]), 0)
 
     def testRuleWithSingleData(self):
-        rule = 'min:12'
-        result = ruleSplitter(rule)
+        result = ValidatorEngine().ruleSplitter('min:12')
         print(result)
-        self.assertEqual(result['name'], 'min')
-        self.assertEqual(len(result['args']), 1)
+        self.assertEqual(result[0], 'min')
+        self.assertEqual(len(result[1]), 1)
 
     def testRuleWithDoubleData(self):
-        rule = 'exists:users,id'
-        result = ruleSplitter(rule)
-        self.assertEqual(result['name'], 'exists')
-        self.assertEqual(len(result['args']), 2)
+        result = ValidatorEngine().ruleSplitter('exists:users,id')
+        self.assertEqual(result[0], 'exists')
+        self.assertEqual(len(result[1]), 2)
