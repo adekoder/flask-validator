@@ -8,7 +8,7 @@ validator = ValidatorEngine(app)
 
 @app.route('/index', methods=['POST'])
 @validator('json', {
-    'name': ['required', 'maxa:10']
+    'name': ['required', 'max:10']
 })
 def index():
     return jsonify(
@@ -26,11 +26,11 @@ def test_exp():
     ),200
 
 
-@app.route('/query/<name>', methods=['GET'])
+@app.route('/query', methods=['GET'])
 @validator('query_string', {
     'name': ['required', 'max:10']
 })
-def query_string(name):
+def query_string():
     return jsonify(
         status=True
     ),200

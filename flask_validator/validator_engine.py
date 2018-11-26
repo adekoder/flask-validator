@@ -42,7 +42,8 @@ class ValidatorEngine():
             for rule in rules:
                 validator_name, validator_args = self.ruleSplitter(rule)
                 try:
-                    validation_result = validators[validator_name](data.get(field, None), validator_args)
+                    validation_result = validators[validator_name](data.get(field, None),\
+                    validator_args[0] if len(validator_args) == 1 else validator_args)
                 except KeyError:
                     raise ValidatorKeyError(
                         validator_name, 'Builtin validator specified not known')
@@ -57,7 +58,8 @@ class ValidatorEngine():
         validator = rules[0]
         if not len(rules) > 1:
             return validator, []
-        return validator, rules[1].split(',')
+        args = rules[1].split(',')
+        return validator, args
 
     def json(self, rules):
         data = request.get_json(force=True)
@@ -67,7 +69,7 @@ class ValidatorEngine():
         return True
 
     def query_string(self, rules):
-        data = request.args
+        data = request.args.to_dict()
         self.validate(data, rules)
         if self.errors.hasErrors():
             return False

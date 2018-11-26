@@ -10,20 +10,34 @@ class TestValidator(unittest.TestCase):
         self.app_context.push()
         self.client = self.app.test_client()
 
-    def test_validator_with_wrong_json_data(self):
-        response = self.client.post('/index', data=json.dumps({}),
+    def test_validator_with_bad_json_data(self):
+        response = self.client.post('/index', data=json.dumps({'name': "heyhddhdhhdhdhdhdhdhdhdhdh"}),
          headers={
              'content-type': 'application/json'
         })
         data = response.get_json()
+        print(data)
         self.assertEqual(response.status_code, 422)
         self.assertEqual(data['status'], False)
         self.assertIn('errors', data)
     
-    # def test_validator_with_query_string(self):
-    #     with self.client as client:
-    #         response = client.get('/query/',
-    #         headers={
-    #             'content-type': 'application/json'
-    #         })
-    #         print(response.get_json())
+    def test_validator_with_bad_query_string(self):
+        response = self.client.get('/query?name="jamesbond1233"&age=23',
+        headers={
+            'content-type': 'application/json'
+        })
+        data = response.get_json()
+        print(data)
+        self.assertEqual(response.status_code, 422)
+        self.assertEqual(data['status'], False)
+        self.assertIn('errors', data)
+
+    def test_validator_with_good_query_string(self):
+        response = self.client.get('/query?name=jamesbond&age=23',
+        headers={
+            'content-type': 'application/json'
+        })
+        data = response.get_json()
+        print(data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(data['status'], True)
