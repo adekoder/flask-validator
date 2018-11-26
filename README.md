@@ -59,8 +59,8 @@ or when use using flask factory function pattern
 ```
 
 ###  Using the validator object
-Decorate your route function with the validator object like this..
-````
+Decorate your route function with the validator object like this.
+```
     @validator(<where-to-check-for-data>, <validation-logic>)
 ```
 
@@ -81,14 +81,9 @@ The second arguement is a dictionary holding the validation rules
 
 ## List of Built in validation rules
 ...
-
 ## Contributions
-....
-
+...
 ## 
-
-
-
 
 
 ### Author
