@@ -25,6 +25,7 @@ class Validators():
     @staticmethod
     def min(request_data, validator_arg):
         error_msg = f'This field must not be less than {validator_arg}'
+        print(validator_arg)
         if isinstance(request_data, int):
             if request_data < int(validator_arg):
                 return { 'status': False, 'message': error_msg}
