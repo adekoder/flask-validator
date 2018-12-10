@@ -67,7 +67,7 @@ Decorate your route function with the validator object like this.
 so you have 
 ```
     @validator('json', {
-        name: ['required, 'min:23']
+        'name': ['required', 'min:23']
     })
 ```
 
@@ -79,8 +79,39 @@ The second arguement is a dictionary holding the validation rules
     { <Field to validate >: [<Rules: A list if the validtion rules to check on the field sepcified> ]}
 ```
 
-## List of Built in validation rules
-...
+## Built-in Validation Rules
+
+### `json`
+
+Using the `json` rule, the validator expects a JSON object from the client. It validates fields in JSON data.
+
+### `query_string`
+The `query_string` rule validates the URL query arguments passed by the client.
+
+### `headers`
+Validates the request headers
+
+## Built-in Validation Rules Args
+You can specify extra argument to a rule like character limit for a parameter and required values.
+
+### `required`
+Specify a required value. 
+
+You can require a value in a JSON payload as follows:
+```
+@validator('json', {
+    'name': ['required', 'min:23']
+})
+```
+
+### `max` and `min`
+The maximum and minimum character for a parameter
+```
+@validator('json', {
+    'phone': ['required', 'min:8', 'max:16']
+})
+```
+
 ## Contributions
 ...
 ## 
