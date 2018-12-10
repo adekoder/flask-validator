@@ -12,7 +12,7 @@ from flask import Flask, jsonify
 from flask_validator import ValidatorEngine
 
 app = Flask(__name__)
-validator = ValidatorEngine(app)
+validator = ValidatorEngine()
 
 @app.route('/index', methods=['POST'])
 @validator('json', {

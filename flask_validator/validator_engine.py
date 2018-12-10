@@ -1,22 +1,17 @@
 import sys
 import traceback
+
 from functools import wraps
+
 from flask import current_app, request, jsonify, session
+
+from .error_bag import ErrorBag
 from .validators import validators
 from .exceptions import ValidatorAttributeError, ValidatorKeyError
-from .error_bag import ErrorBag
 
 
-class ValidatorEngine():
-
-    def __init__(self, app=None, db=None):
-        self.app = app
-        if app is not None and db is not None:
-            self.init_app(app, db)
-
-    def init_app(self, app, db=None):
-        self.app = app
-        self.db = db
+class ValidatorEngine(object):
+    errors = None
 
     def __call__(self, validation_type, rules):
         def wrapper(func):
