@@ -8,7 +8,7 @@ from .error_bag import ErrorBag
 
 
 class ValidatorEngine():
-
+    error = None
     def __init__(self, app=None, db=None):
         self.app = app
         if app is not None and db is not None:
@@ -46,7 +46,7 @@ class ValidatorEngine():
                     validator_args[0] if len(validator_args) == 1 else validator_args)
                 except KeyError:
                     raise ValidatorKeyError(
-                        validator_name, 'Builtin validator specified not known')
+                        validator_name, 'Built-in validator specified not known')
                 
                 if not validation_result['status']:
                     self.errors.addError(field, validation_result['message'])
