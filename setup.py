@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='Flask-Validator',
     version='1.0',
-    url='',
+    url='https://github.com/adekoder/flask-validator',
     license='BSD',
     author='Ogunbiyi Ibrahim',
     author_email='adwumiogunbiyi@gmail.com',
