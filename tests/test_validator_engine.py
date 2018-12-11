@@ -11,7 +11,7 @@ class TestValidator(unittest.TestCase):
         self.client = self.app.test_client()
 
     def test_validator_with_bad_json_data(self):
-        response = self.client.post('/index', data=json.dumps({'name': "heyhddhdhhdhdhdhdhdhdhdhdh"}),
+        response = self.client.post('/index', data=json.dumps({'name': 20}),
          headers={
              'content-type': 'application/json'
         })
