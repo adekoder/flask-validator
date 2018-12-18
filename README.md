@@ -135,7 +135,7 @@ This check that the input under validation is a list
     'choice': ['list']
 })
 ```
-you can also set your validation to make sure the list in of a specific length
+you can also set your validation to make sure the list is of a specific length
 ```
 @validator('json', {
     'choice': ['list:3']
