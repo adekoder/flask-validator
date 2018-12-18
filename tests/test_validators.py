@@ -39,3 +39,8 @@ class TestValidators(unittest.TestCase):
     def test_alpha_with_correct_data(self):
         result = validators['alpha']('james')
         self.assertTrue(result['status'])
+
+    def test_alpha_with_empty_data(self):
+        result = validators['alpha']('')
+        self.assertFalse(result['status'])
+    

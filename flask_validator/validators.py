@@ -36,10 +36,17 @@ class Validators():
             if len(request_data) < int(validator_arg):
                 return {'status': False, 'message': error_msg}
         return {'status': True}
-
+    
+    @staticmethod
+    def alpha(request_data, validator_arg=None):
+        error_msg = 'This field must contain on alphabets (A-Za-z)'
+        if not request_data or  not request_data.isalpha()  :
+            return {'status': False, 'message': error_msg}
+        return {'status': True}
 
 validators = {
     'required': Validators.required,
     'max': Validators.max,
-    'min': Validators.min
+    'min': Validators.min,
+    'alpha': Validators.alpha
 }
