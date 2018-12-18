@@ -28,7 +28,6 @@ class Validators():
     def min(request_data, validator_arg):
         error_msg = 'This field must not be less than {args}'.format(
             args=validator_arg)
-        print(validator_arg)
         if isinstance(request_data, int):
             if request_data < int(validator_arg):
                 return {'status': False, 'message': error_msg}
@@ -51,11 +50,25 @@ class Validators():
             return {'status': False, 'message': error_msg}
         return {'status': True}
     
+    @staticmethod
+    def list(request_data, validator_arg=None):
+        error_msg = 'This field must be a list'
+        print(validator_arg)
+        if not isinstance(request_data, list):
+            return {'status': False, 'message': error_msg}
+        
+        if validator_arg and len(request_data) != validator_arg:
+            error_msg += ' with length of {arg}'.format(arg=validator_arg)
+            return {'status': False, 'message': error_msg}
+        
+        return {'status': True}
+    
 
 validators = {
     'required': Validators.required,
     'max': Validators.max,
     'min': Validators.min,
     'alpha': Validators.alpha,
-    'alphanumeric': Validators.alphanumeric
+    'alphanumeric': Validators.alphanumeric,
+    'list': Validators.list
 }
