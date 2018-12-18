@@ -105,12 +105,44 @@ You can require a value in a JSON payload as follows:
 ```
 
 ### `max` and `min`
-The maximum and minimum character for a parameter
+The maximum and minimum character for a parameter 
 ```
 @validator('json', {
     'phone': ['required', 'min:8', 'max:16']
 })
 ```
+
+### `alpha`
+This check that the input under validation contains only alphabets (A-Za-z)
+```
+@validator('json', {
+    'name': ['alpha']
+})
+```
+
+### `alphanumeric`
+This check that the input under validation contains both alphabets and numbers (A-Za-z0-9)
+```
+@validator('json', {
+    'username': ['alphanumeric']
+})
+```
+
+### `list`
+This check that the input under validation is a list
+```
+@validator('json', {
+    'choice': ['list']
+})
+```
+you can also set your validation to make sure the list in of a specific length
+```
+@validator('json', {
+    'choice': ['list:3']
+})
+```
+this will check test the data for list and of length 3
+
 
 ## Contributions
 ...
