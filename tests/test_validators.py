@@ -44,3 +44,15 @@ class TestValidators(unittest.TestCase):
         result = validators['alpha']('')
         self.assertFalse(result['status'])
     
+    def test_alphanumeric_with_wrong_data(self):
+        result = validators['alphanumeric']('james_1233')
+        self.assertFalse(result['status'])
+    
+    def test_alphanumeric_with_correct_data(self):
+        result = validators['alphanumeric']('james')
+        self.assertTrue(result['status'])
+
+    def test_alphanumeric_with_empty_data(self):
+        result = validators['alphanumeric']('')
+        self.assertFalse(result['status'])
+    

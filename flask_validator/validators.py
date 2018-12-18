@@ -40,13 +40,22 @@ class Validators():
     @staticmethod
     def alpha(request_data, validator_arg=None):
         error_msg = 'This field must contain on alphabets (A-Za-z)'
-        if not request_data or  not request_data.isalpha()  :
+        if not request_data.isalpha()  :
             return {'status': False, 'message': error_msg}
         return {'status': True}
+
+    @staticmethod
+    def alphanumeric(request_data, validator_arg=None):
+        error_msg = 'This field must contain both alphabets and numbers (A-Za-z0-9)'
+        if not request_data.isalnum():
+            return {'status': False, 'message': error_msg}
+        return {'status': True}
+    
 
 validators = {
     'required': Validators.required,
     'max': Validators.max,
     'min': Validators.min,
-    'alpha': Validators.alpha
+    'alpha': Validators.alpha,
+    'alphanumeric': Validators.alphanumeric
 }
