@@ -105,7 +105,7 @@ You can require a value in a JSON payload as follows:
 ```
 
 ### `max` and `min`
-The maximum and minimum character for a parameter
+The maximum and minimum character for a parameter 
 ```
 @validator('json', {
     'phone': ['required', 'min:8', 'max:16']

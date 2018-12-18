@@ -31,3 +31,11 @@ class TestValidators(unittest.TestCase):
     def test_max_with_lesser_input(self):
         result = validators['max'](2, 9)
         self.assertTrue(result['status'])
+
+    def test_alpha_with_wrong_data(self):
+        result = validators['alpha']('james_1233')
+        self.assertFalse(result['status'])
+    
+    def test_alpha_with_correct_data(self):
+        result = validators['alpha']('james')
+        self.assertTrue(result['status'])
