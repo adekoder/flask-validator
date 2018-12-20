@@ -16,10 +16,14 @@ class Date(object):
     }
 
     def _build_regex(self, format):
-        date_format_string, time_format_string = format.split(' ')
-        time_regex_string= self._time_regex_string(time_format_string)
-        date_regex_string = self._date_regex_string(date_format_string)
-        return  '%s %s'%(date_regex_string, time_regex_string)
+        format_string = format.split(' ')
+        date_regex_string = self._date_regex_string(format_string[0])
+
+        if len(format_string) > 1:
+            time_regex_string = self._time_regex_string(format_string[1])
+            return '%s %s'%(date_regex_string, time_regex_string)
+        
+        return date_regex_string
 
     def _time_regex_string(self, time_format_string):
         if ':' not in time_format_string:
@@ -70,4 +74,6 @@ class Date(object):
             return {'status': False, 'message': error_msg}
 
         return {'status': True}
+
+    
 
