@@ -143,6 +143,65 @@ you can also set your validation to make sure the list is of a specific length
 ```
 this will check test the data for list and of length 3
 
+### 'bool'
+This check that the input under validation is a boolean datatype (True/False) or (1/0)
+```
+@validator('json', {
+    'agreed': ['bool']
+})
+```
+
+### `date:<format>`
+This check that the input under validation is a date that matches the `<format>` provided.
+```
+ @validator('json', {
+    'delivery_date': ['date:%Y/%m/%d %H:%M:%S']
+ })
+```
+The format is the standard date format codes specified in the datetime library in python
+[chech it here (date formats codes)](https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior)
+
+### `date:<format>,<value>`
+You can also validate that the date matches the format and that date value sepecified
+```
+@validator('json', {
+    'delivery_date': ['date:%Y/%m/%d %H:%M:%S,2017/03/04 01:02:45']
+})
+```
+
+### `date_before:<format>,<value>`
+Checks that the date matches the format and is before the date value specified
+```
+@validator('json', {
+    'delivery_date': ['date_before:%Y/%m/%d %H:%M:%S,2017/03/04 01:02:45']
+})
+```
+
+### `date_before_or_equal:<format>,<value>`
+Checks that the date matches the format and is before or equals to the date value specified
+```
+@validator('json', {
+    'delivery_date': ['date_before_or_equal:%Y/%m/%d %H:%M:%S,2017/03/04 01:02:45']
+})
+```
+
+### `date_after:<format>,<value>`
+Checks that the date matches the format and is after the date value specified
+```
+@validator('json', {
+    'delivery_date': ['date_after:%Y/%m/%d %H:%M:%S,2017/03/04 01:02:45']
+})
+```
+
+### `date_after_or_equal:<format>,<value>`
+Checks that the date matches the format and is after or equals to the date value specified
+```
+@validator('json', {
+    'delivery_date': ['date_after_or_equal:%Y/%m/%d %H:%M:%S,2017/03/04 01:02:45']
+})
+```
+
+
 
 ## Contributions
 ...
