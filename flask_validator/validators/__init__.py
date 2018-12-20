@@ -1,4 +1,5 @@
 from .general import General
+from .date import Date
 
 validators = {
     'required': General.required,
@@ -7,5 +8,6 @@ validators = {
     'alpha': General.alpha,
     'alphanumeric': General.alphanumeric,
     'list': General.list,
-    'bool': General.boolean
+    'bool': General.boolean,
+    'date': Date.date
 }
