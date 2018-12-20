@@ -53,7 +53,6 @@ class Validators():
     @staticmethod
     def list(request_data, validator_arg=None):
         error_msg = 'This field must be a list'
-        print(validator_arg)
         if not isinstance(request_data, list):
             return {'status': False, 'message': error_msg}
         
@@ -63,6 +62,15 @@ class Validators():
         
         return {'status': True}
     
+    @staticmethod
+    def boolean(request_data, validator_arg=None):
+        error_msg = 'This field must be a boolean value (True/False) or (1/0)'
+
+        if isinstance(request_data, bool) or (request_data == 0) or request_data == 1:
+            return {'status': True}
+        
+        return {'status': False, 'message': error_msg}
+    
 
 validators = {
     'required': Validators.required,
@@ -70,5 +78,6 @@ validators = {
     'min': Validators.min,
     'alpha': Validators.alpha,
     'alphanumeric': Validators.alphanumeric,
-    'list': Validators.list
+    'list': Validators.list,
+    'bool': Validators.boolean
 }

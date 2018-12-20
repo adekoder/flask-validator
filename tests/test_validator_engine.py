@@ -2,6 +2,7 @@ import unittest
 from flask import json, session
 from . import app
 from flask_validator.exceptions import ValidatorAttributeError
+
 class TestValidator(unittest.TestCase):
 
     def setUp(self):
