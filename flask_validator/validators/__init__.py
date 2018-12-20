@@ -10,4 +10,5 @@ validators = {
     'list': General.list,
     'bool': General.boolean,
     'date': Date.date,
+    'date_after': Date.after
 }
