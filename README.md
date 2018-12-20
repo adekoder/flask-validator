@@ -159,7 +159,7 @@ This check that the input under validation is a date that matches the `<format>`
  })
 ```
 The format is the standard date format codes specified in the datetime library in python
-[chech it here (date formats codes)](https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior)
+[check it here (date formats codes)](https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior)
 
 ### `date:<format>,<value>`
 You can also validate that the date matches the format and that date value sepecified
