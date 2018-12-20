@@ -1,4 +1,4 @@
-class Validators():
+class General():
     @staticmethod
     def required(request_data, validation_arg=None):
         error_msg = 'This field is required'
@@ -71,13 +71,3 @@ class Validators():
         
         return {'status': False, 'message': error_msg}
     
-
-validators = {
-    'required': Validators.required,
-    'max': Validators.max,
-    'min': Validators.min,
-    'alpha': Validators.alpha,
-    'alphanumeric': Validators.alphanumeric,
-    'list': Validators.list,
-    'bool': Validators.boolean
-}
