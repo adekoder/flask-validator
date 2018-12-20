@@ -42,6 +42,26 @@ class Date(object):
             return {'status': False, 'message': error_msg}
         
         return {'status': True}
+
+    @staticmethod
+    def after_or_equal(request_data, *args):
+        if(len(args) != 2):
+            raise ValidationArgumentError('ArgumentError', 'Usage should be date_after:<format>,<value>')
+        
+        error_msg = 'This field must be after this date {arg}'\
+        .format(arg=args[0])
+    
+        try:
+            date_value_1 = datetime.strptime(request_data, args[0])
+        except ValueError:
+            return {'status': False, 'message': \
+                'This field must be a date that match this format'.format(arg=args[0])}
+        
+        date_value_2 = datetime.strptime(args[1], args[0])
+        if not date_value_1 >= date_value_2:
+            return {'status': False, 'message': error_msg}
+        
+        return {'status': True}
         
 
     
