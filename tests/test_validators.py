@@ -95,13 +95,11 @@ class TestValidators(unittest.TestCase):
         result = validators['date']('1/21/2017 31:01:23', '%Y/%m/%d %H:%M:%S')
         self.assertFalse(result['status'])
 
-    # def test_date_equal_with_correct_data(self):
-    #     result = validators['date_equal']('1/21/2017 31:01:23', '1/21/2017 31:01:23')
-    #     self.assertTrue(result['status'])
+    def test_date_equal_with_correct_data(self):
+        result = validators['date']('2017/03/02 00:01:23', *('%Y/%m/%d %H:%M:%S', '2017/03/02 00:01:23'))
+        self.assertTrue(result['status'])
     
-    # def test_date_equal_with_wrong_data(self):
-    #     result = validators['date_equal']('1/21/2017 31:01:23', '1/21/2817 31:91:23')
-    #     self.assertTrue(result['status'])
-    
-    
+    def test_date_equal_with_wrong_data(self):
+        result = validators['date']('2017/02/01 00:01:23', *('%Y/%m/%d %H:%M:%S', '1/21/2017 01:01:23'))
+        self.assertFalse(result['status'])
     

@@ -5,19 +5,26 @@ class Date(object):
 
 
     @staticmethod
-    def date(request_data, date_format):
+    def date(request_data, *args):
         error_msg = 'This field must be a date that match this format {arg}'\
-            .format(arg=date_format)
-        try:
-            datetime.strptime(request_data, date_format)
+            .format(arg=args[0])
+        try:  
+            date_value_1 = datetime.strptime(request_data, args[0])
         except ValueError:
+            print('here')
             return {'status': False, 'message': error_msg}
+
+        if len(args) == 2:
+            try: 
+                date_value_2 = datetime.strptime(args[1], args[0])
+            except ValueError: 
+                return {'status': False, 'message': error_msg}
+
+            if date_value_1 != date_value_2 :
+                error_msg += 'and value must be {arg}'.format(arg=args[1])
+                return {'status': False, 'message': error_msg}
+        
         return {'status': True}
 
-    @staticmethod
-    def date_equals(request_data, validator_arg):
-        error_msg = 'This field must be equal to'
-        if request_data != validator_arg:
-            return {'status': False, 'message': error_msg}
     
 
