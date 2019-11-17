@@ -50,6 +50,18 @@ class General():
             return {'status': False, 'message': error_msg}
         return {'status': True}
     
+    def int(request_data, *validator_args):
+        error_msg = 'This field must contain numbers (0-9)'
+        if not isinstance(request_data, int) and not request_data.isdigit():
+            return {'status': False, 'message': error_msg}
+        return {'status': True}
+    
+    def float(request_data, *validator_args):
+        error_msg = 'This field must contain numbers (0-9)'
+        if not isinstance(request_data, (float, int)) and not request_data.isdecimal():
+            return {'status': False, 'message': error_msg}
+        return {'status': True}
+    
     @staticmethod
     def list(request_data, *validator_args):
         print(validator_args)
