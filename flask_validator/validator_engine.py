@@ -28,7 +28,7 @@ class ValidatorEngine(object):
                     validation_type_method = self.__getattribute__(
                         validation_type)
                     all_validation_passes = validation_type_method(rules)
-                    if  not all_validation_passes:
+                    if not all_validation_passes:
                         return self.errors.response()
                     return func(*args, **kwargs)
                 except AttributeError:
@@ -46,8 +46,9 @@ class ValidatorEngine(object):
                 try:
                     # validation_result = validators[validator_name](data.get(field, None),\
                     # validator_args[0] if len(validator_args) == 1 else validator_args)
-                    validation_result = validators[validator_name](data.get(field, None),\
-                    *validator_args)
+                    validation_result = validators[validator_name](
+                        data.get(field, None), *validator_args
+                    )
                 except KeyError:
                     raise ValidatorKeyError(
                         validator_name, 'Built-in validator specified not known')

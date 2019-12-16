@@ -1,3 +1,6 @@
+import re
+
+
 class General():
     @staticmethod
     def required(request_data, *validation_args):
@@ -71,4 +74,18 @@ class General():
             return {'status': True}
         
         return {'status': False, 'message': error_msg}
-    
+
+    @staticmethod
+    def regex(request_data, *validator_arg):
+        error_msg = 'This field does not match required pattern'
+        pattern = validator_arg[0]
+
+        if hasattr(re, 'fullmatch'):
+            match = re.fullmatch(pattern, request_data)
+        elif not (pattern.startswith('^') and pattern.endswith('$')):
+            pattern = '{}{}{}'.format('^', pattern, '$')
+            match = re.match(pattern, request_data)
+        else:
+            match = re.match(pattern, request_data)
+
+        return {'status': True} if match else {'status': False, 'message': error_msg}

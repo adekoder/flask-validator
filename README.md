@@ -135,7 +135,7 @@ This check that the input under validation is a list
     'choice': ['list']
 })
 ```
-you can also set your validation to make sure the list is of a specific length
+You can also set your validation to make sure the list is of a specific length
 ```
 @validator('json', {
     'choice': ['list:3']
@@ -143,11 +143,19 @@ you can also set your validation to make sure the list is of a specific length
 ```
 this will check test the data for list and of length 3
 
-### 'bool'
+### `bool`
 This check that the input under validation is a boolean datatype (True/False) or (1/0)
 ```
 @validator('json', {
     'agreed': ['bool']
+})
+```
+
+### `regex`
+The regex validator matches the _whole string_ for the regular expression pattern
+```
+@validator('json', {
+    'abc-123-XYZ': [r'regex:[\w\d\-]+']
 })
 ```
 

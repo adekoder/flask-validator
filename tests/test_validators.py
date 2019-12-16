@@ -87,4 +87,15 @@ class TestValidators(unittest.TestCase):
         result_2 = validators['bool'](0)
         self.assertTrue(result_1['status'])
         self.assertTrue(result_2['status'])
-        
+
+    def test_regex_with_valid_pattern(self):
+        test_email = 'hello@email.com'
+        test_email_pattern = r'[\w\d]+\@[\w\d]+\.[\w\d\.]+'
+        result = validators['regex'](test_email, test_email_pattern)
+        self.assertTrue(result['status'])
+
+    def test_regex_with_invalid_data(self):
+        test_value = 'abc-123-(__)'
+        pattern = r'[\w\d\-]+'
+        result = validators['regex'](test_value, pattern)
+        self.assertFalse(result['status'])
