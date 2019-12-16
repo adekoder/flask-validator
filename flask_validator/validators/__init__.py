@@ -9,6 +9,7 @@ validators = {
     'alphanumeric': General.alphanumeric,
     'list': General.list,
     'bool': General.boolean,
+    'regex': General.regex,
     'date': Date.date,
     'date_after': Date.after,
     'date_after_or_equal': Date.after_or_equal,
