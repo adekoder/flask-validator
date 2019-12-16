@@ -6,13 +6,11 @@ class TestRuleSplitter(unittest.TestCase):
         
     def testRuleOnly(self):
         result = ValidatorEngine().ruleSplitter('max')
-        print(result)
         self.assertEqual(result[0], 'max')
         self.assertEqual(len(result[1]), 0)
 
     def testRuleWithSingleData(self):
         result = ValidatorEngine().ruleSplitter('min:12')
-        print(result)
         self.assertEqual(result[0], 'min')
         self.assertEqual(len(result[1]), 1)
 

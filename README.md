@@ -143,6 +143,22 @@ You can also set your validation to make sure the list is of a specific length
 ```
 this will check test the data for list and of length 3
 
+```python
+@validator('json', {
+    'choice': ['list:3,int,float']
+})
+```
+The validator will check for a list with 3 items and match each items to the data types specified (i.e. `int`, `float`).
+
+Currently supported data types are:
+ + `str`
+ + `int`
+ + `dict`
+ + `list`
+ + `float`
+ + `bool`
+ + `none`
+
 ### `bool`
 This check that the input under validation is a boolean datatype (True/False) or (1/0)
 ```

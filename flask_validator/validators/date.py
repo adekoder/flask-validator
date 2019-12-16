@@ -12,7 +12,6 @@ class Date(object):
         try:  
             date_value_1 = datetime.strptime(request_data, args[0])
         except ValueError:
-            print('here')
             return {'status': False, 'message': error_msg}
 
         if len(args) == 2:

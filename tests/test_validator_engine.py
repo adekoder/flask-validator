@@ -1,7 +1,6 @@
 import unittest
-from flask import json, session
+from flask import json
 from . import app
-from flask_validator.exceptions import ValidatorAttributeError
 
 class TestValidator(unittest.TestCase):
 
@@ -17,7 +16,6 @@ class TestValidator(unittest.TestCase):
              'content-type': 'application/json'
         })
         data = response.get_json()
-        print(data)
         self.assertEqual(response.status_code, 422)
         self.assertEqual(data['status'], False)
         self.assertIn('errors', data)
@@ -28,7 +26,6 @@ class TestValidator(unittest.TestCase):
             'content-type': 'application/json'
         })
         data = response.get_json()
-        print(data)
         self.assertEqual(response.status_code, 422)
         self.assertEqual(data['status'], False)
         self.assertIn('errors', data)
@@ -39,6 +36,5 @@ class TestValidator(unittest.TestCase):
             'content-type': 'application/json'
         })
         data = response.get_json()
-        print(data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(data['status'], True)

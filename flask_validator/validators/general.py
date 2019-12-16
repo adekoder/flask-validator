@@ -55,15 +55,33 @@ class General():
     
     @staticmethod
     def list(request_data, *validator_args):
-        print(validator_args)
         error_msg = 'This field must be a list'
+        data_types = {
+            'str': str,
+            'int': int,
+            'dict': dict,
+            'list': list,
+            'float': float,
+            'bool': bool,
+            'none': type(None)
+        }
         if not isinstance(request_data, list):
             return {'status': False, 'message': error_msg}
         if validator_args:
-            if validator_args[0] and len(request_data) != validator_args[0]:
+            list_length = int(validator_args[:1][0])
+            allowed_data_types = tuple(
+                data_types[x] for x in validator_args[1:]
+                if x in data_types.keys()
+            )
+
+            if len(request_data) != list_length:
                 error_msg += ' with length of {arg}'.format(arg=validator_args[0])
                 return {'status': False, 'message': error_msg}
-        
+            if allowed_data_types:
+                if not all([isinstance(x, allowed_data_types) for x in request_data]):
+                    error_msg = 'This field has a list with a wrong data type'
+                    return {'status': False, 'message': error_msg}
+
         return {'status': True}
     
     @staticmethod

@@ -1,7 +1,7 @@
 import unittest
 
 from flask_validator.validators import  validators
-from flask_validator.exceptions import ValidationArgumentError
+
 
 class TestValidators(unittest.TestCase):
     
@@ -69,7 +69,19 @@ class TestValidators(unittest.TestCase):
         result = validators['list']([1,2,3], 2)
         self.assertFalse(result['status'])
         self.assertEqual(result['message'], 'This field must be a list with length of 2')
-    
+
+    def test_list_with_valid_data_types(self):
+        result = validators['list']([1, 2.8, 3], *(3, 'int', 'float'))
+        self.assertTrue(result['status'])
+
+    def test_list_with_wrong_data_types(self):
+        result = validators['list']([1, 2, 3], *(3, 'str'))
+        self.assertFalse(result['status'])
+
+    def test_list_with_none_type(self):
+        result = validators['list']([1, None, 3], *(3, 'str', 'none'))
+        self.assertFalse(result['status'])
+
     def test_list_plus_limit_with_corret_data(self):
         result = validators['list']([1,2,3], 3)
         self.assertTrue(result['status'])
