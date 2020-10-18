@@ -4,7 +4,7 @@ This is a validation library for flask app or api
 
 ## Installation
 
-`pip install git+https://github.com/adekoder/flask-validator`
+`pip install git+git://github.com/adekoder/flask-validator#egg=flask-validator`
 
 ## Example (Usage)
 ```
