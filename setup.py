@@ -12,7 +12,7 @@ setup(
     #py_modules=['flask_validator'],
     # if you would be using a package instead use packages instead
     # of py_modules:
-    packages=['flask_validator'],
+    packages=['flask_validator', 'flask_validator.validators'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',
